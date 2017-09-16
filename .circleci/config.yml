@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/miniflix
     docker:
-      - image: node:8.1.3-alpine
+      - image: circleci/node:latest-browsers
     steps:
       - checkout
       - run:
           name: update-npm
-          command: 'yarn global add npm@latest'
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
