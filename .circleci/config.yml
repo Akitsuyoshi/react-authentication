@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/miniflix
+    working_directory: ~/react-authentication
     docker:
       - image: circleci/node:latest-browsers
     steps:
