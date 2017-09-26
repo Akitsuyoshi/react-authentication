@@ -4,9 +4,9 @@ import auth0 from 'auth0-js';
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 
-const CLIENT_ID = 'E2IoNLJq3ddiulman0XYHhhnlLUWAlmz';
-const CLIENT_DOMAIN = 'akitsuyoshi.auth0.com';
-const REDIRECT = 'http://localhost:3000/callback';
+const CLIENT_ID = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const CLIENT_DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN;;
+const REDIRECT = process.env.REACT_APP_AUTH0_CALLBACK_URL;
 const SCOPE = 'openid';
 const AUDIENCE = 'https://akitsuyoshi.auth0.com/userinfo';
 
