@@ -11,17 +11,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const authCheck = jwt({
-  secret: jwks.expressJwtSecret({
+var authCheck = jwt({
+    secret: jwks.expressJwtSecret({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        // YOUR-AUTH0-DOMAIN name e.g https://prosper.auth0.com
-        jwksUri: "akitsuyoshi.auth0.com/.well-known/jwks.json"
+        jwksUri: "https://akitsuyoshi.auth0.com/.well-known/jwks.json"
     }),
-    // This is the identifier we set when we created the API
-    audience: 'https://akitsuyoshi.auth0.com/userinfo',
-    issuer: 'akitsuyoshi.auth0.com',
+    audience: 'http://chucknorrisworld.com',
+    issuer: "https://akitsuyoshi.auth0.com/",
     algorithms: ['RS256']
 });
 

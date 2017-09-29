@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getAccessToken } from './AuthService';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -13,5 +14,5 @@ function getFoodData() {
 
 function getCelebrityData() {
   const url = `${BASE_URL}/api/jokes/celebrity`;
-  return axios.get(url).then(response => response.data);
+  return axios.get(url, { headers: { Authorization: `Bearer ${getAccessToken()}` }}).then(response => response.data);
 }
