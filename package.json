@@ -13,10 +13,22 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"yarn startfor\" \"cd server && yarn start\"",
+    "startfor": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cd server && npm install --only=dev && npm install && nohup npm start"
+    "heroku-postbuild": "cd server && npm install --only=dev && npm install"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3333",
+      "pathRewrite": {
+        "^/server": "/"
+      }
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
   }
 }
