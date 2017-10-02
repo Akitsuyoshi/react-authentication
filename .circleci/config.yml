@@ -19,16 +19,15 @@ jobs:
           name: test
           command: npm test
 
+      - setup_remote_docker
+
       - checkout
-      - run: bash .circleci/setup-heroku.sh
-      - add_ssh_keys:
-          fingerprints:
-            - "cf:7b:81:1d:0a:00:fd:c4:ab:ab:c5:cc:57:c0:89:0f"
-      - deploy:
-          name: Deploy Master to Heroku
+      - run:
+          name: build docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push heroku master
-              heroku run yarn start deploy
-              heroku restart
-            fi
+            docker build --rm=false -t registry.heroku.com/myapp/web .
+      - run:
+          name: Push to Heroku
+          command: |
+            docker login -u $HEROKU_LOGIN -p $HEROKU_API_KEY registry.heroku.com
+            docker push registry.heroku.com/myapp/web
