@@ -12,6 +12,7 @@ RUN yarn global add nodemon
 
 RUN mkdir -p /usr/src/app/server
 COPY /server/package.json /usr/src/app/server
+Run cd /usr/src/app/server
 RUN yarn
 
 
