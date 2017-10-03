@@ -20,14 +20,6 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "cd server && npm install --only=dev && npm install"
   },
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:3333",
-      "pathRewrite": {
-        "^/server": "/"
-      }
-    }
-  },
   "devDependencies": {
     "concurrently": "^3.5.0"
   }
